@@ -25,4 +25,17 @@ func appendValues(values []int, t *tree) []int {
 	return values
 }
 
-func add()
+func add(t *tree, value int) *tree {
+	if t == nil {
+		// Eq. to return &tree{value: value}
+		t = new(tree)
+		t.value = value
+		return t
+	}
+	if value < t.value {
+		t.left = add(t.left, value)
+	} else {
+		t.right = add(t.right, value)
+	}
+	return t
+}
