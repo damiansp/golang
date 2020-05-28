@@ -10,9 +10,11 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
+	rand.Seed(time.Now().Unix())
 	target := rand.Int63n(100) + 1
 	reader := bufio.NewReader(os.Stdin)
 	guessesLeft := 10
