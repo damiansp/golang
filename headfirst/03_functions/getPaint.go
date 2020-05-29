@@ -1,16 +1,26 @@
 // getPaint calculates paint needed by area
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 func main() {
-	getPaintNeeded(4.2, 3.0)
-	getPaintNeeded(5.2, 3.5)
-	getPaintNeeded(5.5, 3.3)
+	var amount float64
+	amount, err := getPaintNeeded(4.2, 3.0)
+	if err != nil {
+		//fmt.Println(err)
+		log.Fatal(err)
+	}
+	fmt.Printf("%0.2f liters needed\n", amount)
 }
 
-func getPaintNeeded(w, h float64) {
+func getPaintNeeded(w, h float64) (float64, error) {
+	if w < 0 || h < 0 {
+		return 0, fmt.Errorf("Width and height must be > 0")
+	}
 	area := w * h
 	liters := area / 10
-	fmt.Printf("%.2f liters needed\n", liters)
+	return liters, nil // nil for error
 }
