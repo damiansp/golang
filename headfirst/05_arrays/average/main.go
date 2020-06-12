@@ -1,10 +1,18 @@
 // average calculates the arithmetic mean of several numbers
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+
+	"../datafile"
+)
 
 func main() {
-	numbers := [3]float64{12.3, 24.6, 36.9}
+	numbers, err := datafile.GetFloats("data.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
 	var sum float64 = 0
 	for _, n := range numbers {
 		sum += n
