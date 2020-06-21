@@ -13,10 +13,14 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	avg := mean(numbers...)
+	fmt.Printf("Mean is: %0.4f\n", avg)
+}
+
+func mean(ns ...float64) float64 {
 	var sum float64 = 0
-	for _, n := range numbers {
+	for _, n := range ns {
 		sum += n
 	}
-	mean := sum / float64(len(numbers))
-	fmt.Printf("Mean is: %0.4f\n", mean)
+	return sum / float64(len(ns))
 }
