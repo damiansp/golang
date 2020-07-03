@@ -13,22 +13,22 @@ func main() {
 	subscriber1.rate = 4.99
 	printInfo(subscriber1)
 	subscriber2 := makeDefaultSubscriber("Beth Ryan")
-	applyDiscount(&subscriber2)
+	applyDiscount(subscriber2)
 	printInfo(subscriber2)
 }
 
-func printInfo(s subscriber) {
+func printInfo(s *subscriber) {
 	fmt.Println("Name:", s.name)
 	fmt.Println("Monthly rate:", s.rate)
 	fmt.Println("Active:", s.active)
 }
 
-func makeDefaultSubscriber(name string) subscriber {
+func makeDefaultSubscriber(name string) *subscriber {
 	var s subscriber
 	s.name = name
 	s.rate = 5.99
 	s.active = true
-	return s
+	return &s
 }
 
 func applyDiscount(s *subscriber) {
