@@ -19,9 +19,18 @@ func main() {
 	fmt.Println("Name:", porsche.name)
 	fmt.Println("Top speed:", porsche.topSpeed)
 
-	var bolts part
-	bolts.descr = "Hex bolts"
-	bolts.count = 24
-	fmt.Println("Description:", bolts.descr)
-	fmt.Println("Count:", bolts.count)
+	bolts := minimumOrder("Hex Bolts")
+	showInfo(bolts)
+}
+
+func minimumOrder(descr string) part {
+	var p part
+	p.descr = descr
+	p.count = 24
+	return p
+}
+
+func showInfo(p part) {
+	fmt.Println("Description:", p.descr)
+	fmt.Println("Count:", p.count)
 }
