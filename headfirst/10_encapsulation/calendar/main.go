@@ -1,21 +1,6 @@
-package main
+package calendar
 
-import (
-	"errors"
-	"fmt"
-	"log"
-)
-
-func main() {
-	date := Date{}
-	err := date.SetYear(2019)
-	if err != nil {
-		log.Fatal(err)
-	}
-	date.SetMonth(7)
-	date.SetDay(19)
-	fmt.Println(date)
-}
+import "errors"
 
 type Date struct {
 	Year  int
