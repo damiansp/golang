@@ -1,48 +1,29 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"log"
+
+	"./calendar"
 )
 
 func main() {
-	date := Date{}
-	err := date.SetYear(2019)
+	event := calendar.Event{}
+	err := event.SetTitle("Scooby Doo Day")
+	err = event.SetYear(2019)
 	if err != nil {
 		log.Fatal(err)
 	}
-	date.SetMonth(7)
-	date.SetDay(19)
-	fmt.Println(date)
-}
-
-type Date struct {
-	Year  int
-	Month int
-	Day   int
-}
-
-func (d *Date) SetYear(year int) error {
-	if year < 1 {
-		return errors.New("invalid year")
+	err = event.SetMonth(5)
+	if err != nil {
+		log.Fatal(err)
 	}
-	d.Year = year
-	return nil
-}
-
-func (d *Date) SetMonth(month int) error {
-	if month < 1 || month > 12 {
-		return errors.New("invalid month")
+	err = event.SetDay(27)
+	if err != nil {
+		log.Fatal(err)
 	}
-	d.Month = month
-	return nil
-}
-
-func (d *Date) SetDay(day int) error {
-	if day < 1 || day > 31 {
-		return errors.New("invalid day")
-	}
-	d.Day = day
-	return nil
+	fmt.Println(event.Title())
+	fmt.Println(event.Year())
+	fmt.Println(event.Month())
+	fmt.Println(event.Day())
 }
