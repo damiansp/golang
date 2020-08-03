@@ -29,3 +29,8 @@ func (t TapeRecorder) Record() {
 func (t TapeRecorder) Stop() {
 	fmt.Println("Stopped!")
 }
+
+type Player interface {
+	Play(string)
+	Stop()
+}

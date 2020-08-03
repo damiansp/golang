@@ -14,6 +14,16 @@ func (h Horn) MakeSound() {
 	fmt.Println("Honk!")
 }
 
+type Robot string
+
+func (r Robot) MakeSound() {
+	fmt.Println("Beep.  Boop.")
+}
+
+func (r Robot) Walk() {
+	fmt.Println("Powering legs")
+}
+
 type NoiseMaker interface {
 	MakeSound()
 }
@@ -30,4 +40,8 @@ func main() {
 	toy = Horn("Klaxomatic")
 	toy.MakeSound()
 	play(toy)
+	var thingy NoiseMaker = Robot("Robbie")
+	thingy.MakeSound()
+	var robit Robot = thingy.(Robot) // convert to concrete Robot type
+	robit.Walk()
 }
