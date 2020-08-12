@@ -4,18 +4,32 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"path/filepath"
 )
 
 func main() {
-	paths, err := ioutil.ReadDir(".")
+	err := scanDirectory(".")
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, path := range paths {
-		if path.IsDir() {
-			fmt.Println("Directory:", path.Name())
+}
+
+func scanDirectory(path string) error {
+	fmt.Println(path)
+	files, err := ioutil.ReadDir(path)
+	if err != nil {
+		return err
+	}
+	for _, file := range files {
+		filePath := filepath.Join(path, file.Name())
+		if file.IsDir() {
+			err := scanDirectory(filePath)
+			if err != nil {
+				return err
+			}
 		} else {
-			fmt.Println("File:", path.Name())
+			fmt.Println(filePath)
 		}
 	}
+	return nil
 }
