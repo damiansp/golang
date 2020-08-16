@@ -7,7 +7,19 @@ import (
 )
 
 func main() {
+	defer reportPanic()
 	scanDirectory(".")
+}
+
+func reportPanic() {
+	p := recover()
+	if p == nil {
+		return
+	}
+	err, ok := p.(error)
+	if ok {
+		fmt.Println(err)
+	}
 }
 
 func scanDirectory(path string) {
