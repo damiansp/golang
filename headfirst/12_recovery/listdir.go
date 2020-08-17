@@ -8,6 +8,7 @@ import (
 
 func main() {
 	defer reportPanic()
+	panic("some other issue")
 	scanDirectory(".")
 }
 
@@ -19,6 +20,8 @@ func reportPanic() {
 	err, ok := p.(error)
 	if ok {
 		fmt.Println(err)
+	} else {
+		panic(p)
 	}
 }
 
